@@ -22,9 +22,23 @@ server.get('/', (req, res) => {
     res.send('This works in server');
 });
 
-server.get('/seeds/actions/:id', (req, res) => {
+server.get('./actions/:id', (req, res) => {
     res.send ('user ' + req.params.id)
 })
+
+
+server.post('/', (req, res) => {
+    res.status(201);
+});
+
+server.put('/', (req, res) => {
+    res.status(202);
+});
+
+server.delete('/', (req, res) => {
+    res.status(200);
+})
+
 
 server.listen(5000, () => console.log('API running on port 5000'));
 
