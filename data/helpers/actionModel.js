@@ -2,14 +2,8 @@ const db = require('../dbConfig.js');
 const mappers = require('./mappers');
 
 module.exports = {
-  get,
-  insert,
-  update,
-  remove,
-};
-
-function get(id) {
-  let query = db('actions');
+  get: this.function(id) {
+    let query = db('actions');
 
   if (id) {
     return query
@@ -19,14 +13,10 @@ function get(id) {
         if (action) {
           return mappers.actionToBody(action);
         } else {
-          return null;
+          return action;
         }
       });
-  } else {
-    return query.then((actions) => {
-      return actions.map((action) => mappers.actionToBody(action));
-    });
-  }
+  } 
 }
 
 function insert(action) {
