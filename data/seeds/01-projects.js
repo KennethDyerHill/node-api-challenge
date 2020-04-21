@@ -1,3 +1,6 @@
+const express = require('express');
+const action = require('../helpers/actionModel.js');
+
 exports.seed = function(knex, Promise) {
   return knex('projects').insert([
     {
@@ -7,3 +10,15 @@ exports.seed = function(knex, Promise) {
     },
   ]);
 };
+
+server.get('/', (req, res) => {
+  res.status(200).json();
+});
+
+server.put('/', (req, res) => {
+  res.status(201).json();
+});
+
+server.post('/', (req, res) => {
+  res.status()
+});

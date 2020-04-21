@@ -4,7 +4,7 @@ const server = express();
 
 server.use(express.json());
 
-server.get('./data/lambda.db3', (req, res) => {
+server.get('/', (req, res) => {
     res.send('This works in server');
 });
 

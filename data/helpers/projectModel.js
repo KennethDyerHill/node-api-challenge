@@ -15,7 +15,7 @@ function get(id) {
   if (id) {
     query.where("p.id", id).first();
 
-    const promises = [query, getProjectActions(id)]; // [ projects, actions ]
+    const promises = [query, this.getProjectActions(id)]; // [ projects, actions ]
 
     return Promise.all(promises).then(function(results) {
       let [project, actions] = results;
@@ -28,11 +28,11 @@ function get(id) {
         return null;
       }
     });
-  } else {
+  }
+
     return query.then(projects => {
       return projects.map(project => mappers.projectToBody(project));
     });
-  }
 }
 
 function insert(project) {
@@ -55,6 +55,7 @@ function remove(id) {
 }
 
 function getProjectActions(projectId) {
+  console.log(projectId);
   return db("actions")
     .where("project_id", projectId)
     .then(actions => actions.map(action => mappers.actionToBody(action)));
