@@ -1,11 +1,12 @@
 const express = require('express');
 
+const actionRouter = require('./data/helpers/action-router');
+const projectRouter = require('./data/helpers/project-router');
+
 const server = express();
 
 server.use(express.json());
+server.use('/api/actions', actionRouter);
+server.use('/api/projects', projectRouter);
 
-server.get('/', (req, res) => {
-    res.send('This works in server');
-});
-
-server.listen(7000, () => console.log('API running on port 7000'));
+module.exports = server;
