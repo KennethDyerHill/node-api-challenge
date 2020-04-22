@@ -37,6 +37,17 @@ router.get('/:id', (req, res) => {
     .catch(error => res.status(500).json({ message: 'Server Error!' }));
 })
 
+router.put("/", (req, res) => {
+    const {id, project_id, description, notes } = req.body;
+    console.log(id, {project_id, description, notes})
+    Actions.update(id, {project_id, description, notes})
+    .then(response => {
+        console.log(response);
+        response != null ? res.status(200).json({message: "Up date em!"}) : res.status(404).json({message: "Project Id does not exist!"});
+    })
+    .catch(error => res.status(500).json({message: "Server Error"}));
+})
+
 router.delete('/:id', (req, res) => {
     const { id } = req.params;
 
